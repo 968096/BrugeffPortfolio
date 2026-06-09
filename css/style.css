@@ -1,0 +1,94 @@
+:root {
+    --primary-color: #333; /* Ajustar conforme design */
+    --bg-color: #fff;      /* Ajustar conforme design */
+    --text-color: #000;
+    --transition-speed: 0.6s;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    overflow-x: hidden;
+    margin: 0;
+}
+
+/* Removido o nav antigo */
+
+/* Animações Fade-In */
+.fade-in {
+    opacity: 0;
+    transition: opacity 1.2s ease-in;
+}
+
+.fade-in.visible {
+    opacity: 1;
+}
+
+/* Estilo para seções com imagens de design */
+.design-container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: #000;
+}
+
+.design-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Overlay para links */
+.link-overlay {
+    position: absolute;
+    display: block;
+    cursor: pointer;
+    background: transparent;
+    opacity: 0;
+    border: 0;
+    outline: none;
+    text-decoration: none;
+    z-index: 10;
+}
+
+.link-overlay:hover,
+.link-overlay:focus,
+.link-overlay:active {
+    background: transparent;
+    opacity: 0;
+    outline: none;
+}
+
+.menu-link {
+    left: 6.8%;
+    width: 25%;
+    height: 5.1%;
+}
+
+.menu-link-first {
+    width: 26.4%;
+}
+
+.back-link-pages {
+    top: 91.1%;
+    left: 6.7%;
+    width: 6.9%;
+    height: 2.6%;
+}
+
+.back-link-obras {
+    top: 99.35%;
+    left: 3.54%;
+    width: 6.81%;
+    height: 0.24%;
+}
