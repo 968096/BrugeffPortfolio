@@ -1,5 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
     const fadeElements = document.querySelectorAll('.fade-in');
+    const body = document.body;
+
+    requestAnimationFrame(() => {
+        body.classList.add('is-loaded');
+    });
 
     const observerOptions = {
         threshold: 0
@@ -16,5 +21,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     fadeElements.forEach(el => {
         observer.observe(el);
+    });
+
+    const internalLinks = document.querySelectorAll('a[href$=".html"], a[href="index.html"]');
+
+    internalLinks.forEach(link => {
+        link.addEventListener('click', (event) => {
+            const target = link.getAttribute('href');
+
+            if (!target || target.startsWith('http') || target.startsWith('#')) {
+                return;
+            }
+
+            event.preventDefault();
+            body.classList.add('is-navigating');
+
+            window.setTimeout(() => {
+                window.location.href = target;
+            }, 180);
+        });
     });
 });

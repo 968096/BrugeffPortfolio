@@ -3,6 +3,7 @@
     --bg-color: #fff;      /* Ajustar conforme design */
     --text-color: #000;
     --transition-speed: 0.6s;
+    --page-fade-speed: 0.35s;
 }
 
 * {
@@ -18,34 +19,57 @@ body {
     line-height: 1.6;
     overflow-x: hidden;
     margin: 0;
+    opacity: 0;
+    transition: opacity var(--page-fade-speed) ease;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    -webkit-tap-highlight-color: transparent;
 }
+
+body.is-loaded {
+    opacity: 1;
+}
+
+body.is-navigating {
+    opacity: 0;
+}
+
+html {
+    scroll-behavior: smooth;
 
 /* Removido o nav antigo */
 
 /* Animações Fade-In */
 .fade-in {
     opacity: 0;
-    transition: opacity 1.2s ease-in;
+    transform: translateY(8px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
 .fade-in.visible {
     opacity: 1;
+    transform: translateY(0);
 }
 
 /* Estilo para seções com imagens de design */
 .design-container {
     position: relative;
     width: 100%;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: flex-start;
     background-color: #000;
+    overflow: hidden;
 }
 
 .design-container img {
     width: 100%;
     height: auto;
     display: block;
+    user-select: none;
+    -webkit-user-drag: none;
 }
 
 /* Overlay para links */
@@ -59,6 +83,7 @@ body {
     outline: none;
     text-decoration: none;
     z-index: 10;
+    transition: opacity 0.2s ease;
 }
 
 .link-overlay:hover,
@@ -91,4 +116,20 @@ body {
     left: 3.54%;
     width: 6.81%;
     height: 0.24%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    body,
+    .fade-in,
+    .link-overlay {
+        transition: none !important;
+    }
+
+    .fade-in {
+        transform: none;
+    }
 }
